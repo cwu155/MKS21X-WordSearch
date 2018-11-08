@@ -28,13 +28,13 @@ public class Driver{
     //-------------------------------------------------------------------------//
 
 
-    // //Testing addWordHorizontal(String word, int row, int col)
-    // System.out.println("\n\n---Testing addWordHorizontal(String word, int row, int col)---");
-    // System.out.println("Adding \"BIRD\" horizontally to row 0, column 0 of a: Should return true: "+ a.addWordHorizontal("BIRD", 0, 0));
-    // System.out.println("Adding \"KITTY\" horizontally to row 4, column 3 of a: Should return true: "+ a.addWordHorizontal("KITTY", 4, 2));
-    // System.out.println("Adding \"YEP\" horizontally to row 6, column 5 of a: Should return true: "+a.addWordHorizontal("YEP",6,5));
-    // System.out.println("Adding \"BLOB\" horizontally to row 7, column 0 of a: Should return true: "+a.addWordHorizontal("BLOB",7,0));
-    // System.out.println("Board a should be modified:"+a.toString());
+    //Testing addWordHorizontal(String word, int row, int col)
+    System.out.println("\n\n---Testing addWordHorizontal(String word, int row, int col)---");
+    System.out.println("Adding \"BIRD\" horizontally to row 0, column 0 of a: Should return true: "+ a.addWordHorizontal("BIRD", 0, 0));
+    System.out.println("Adding \"KITTY\" horizontally to row 4, column 3 of a: Should return true: "+ a.addWordHorizontal("KITTY", 4, 2));
+    System.out.println("Adding \"YEP\" horizontally to row 6, column 5 of a: Should return true: "+a.addWordHorizontal("YEP",6,5));
+    System.out.println("Adding \"BLOB\" horizontally to row 7, column 0 of a: Should return true: "+a.addWordHorizontal("BLOB",7,0));
+    System.out.println("Board a should be modified:"+a.toString());
     // //-------------------------------------------------------------------------//
     // System.out.println("\nCase: Attempting to add a word to a negative index or an index too large");
     // System.out.println("Attempting to add \"NEGIDX\" horizontally to row -1, column 0 of a: Should return false: "+ a.addWordHorizontal("NEGIDX",-1,0));
