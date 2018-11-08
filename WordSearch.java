@@ -7,13 +7,11 @@ public class WordSearch{
      *@param col is the starting width of the WordSearch
      */
 
+
     public WordSearch(int rows,int cols){
+
       data = new char[rows][cols];
-      for (int i = 0; i < data.length; i++){
-        for (int j = 0; j < data[i].length; j++){
-          data[i][j] = '_';
-        }
-      }
+      clear();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -24,6 +22,25 @@ public class WordSearch{
         }
       }
     }
+
+    /**Each row is a new line, there is a space between each letter
+     *@return a String with each character separated by spaces, and rows
+     *separated by newlines.
+     */
+
+    public String toString(){
+    String result = "";
+      for (int i = 0; i < data.length; i++) {
+        for (int j = 0; j < data[i].length; j ++) {
+          result += data[i][j] + " ";
+          if (j == data[i].length - 1){
+            result += "\n";
+          }
+        }
+      }
+      return result;
+    }
+
 
 
 }
