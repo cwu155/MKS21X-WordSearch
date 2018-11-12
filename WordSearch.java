@@ -15,6 +15,15 @@ public class WordSearch{
       clear();
     }
 
+    public WordSearch( int rows, int cols, String fileName, int randSeed){
+    // Use the random seed specified.
+      seed = this.seed;
+      randgen = new Random(seed);
+      data = new char[rows][cols];
+      clear();
+    }
+
+
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
       for (int i = 0; i < data.length; i++){
