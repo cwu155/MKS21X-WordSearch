@@ -23,6 +23,7 @@ public class WordSearch{
     }
 
     public void constructSearch(int rows, int cols, String fileName){
+      // Helper method!
       data = new char[rows][cols];
       for (int i = 0; i < data.length; i++){
         for (int j = 0; j < data[i].length; j++){
@@ -31,9 +32,25 @@ public class WordSearch{
       }
     }
 
+    public void readFile(String fileName){
+      // Checks to see if file exists and adds words to wordsToAdd.
+      try {
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      while(in.hasNext()){
+        String line = in.nextLine();
+        wordsToAdd.add(line);
+      }
 
-    /**Set all values in the WordSearch to underscores'_'*/
+      } catch(FileNotFoundException e){
+        System.out.println("File not found: " + fileName);
+        //e.printStackTrace();
+        System.exit(1);
+        }
+      }
+
     private void clear(){
+      // Sets all values to underscores.
       for (int i = 0; i < data.length; i++){
         for (int j = 0; j < data[i].length; j++){
           data[i][j] = '_';
