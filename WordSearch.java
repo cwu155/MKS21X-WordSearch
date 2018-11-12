@@ -33,22 +33,23 @@ public class WordSearch{
       }
     }
 
-    /**Each row is a new line, there is a space between each letter
-     *@return a String with each character separated by spaces, and rows
-     *separated by newlines.
-     */
 
     public String toString(){
     String result = "";
       for (int i = 0; i < data.length; i++) {
-        for (int j = 0; j < data[i].length; j ++) {
-          result += data[i][j] + " ";
-          if (j == data[i].length - 1){
-            result += "\n";
+        for (int j = 0; j < data[i].length; j++) {
+          if (j == 0){
+          result += "|" + data[i][j] + " ";
+          } else if (j == data[i].length- 2){
+          result += data[i][j];
+          } else if (j == data[i].length - 1){
+            result += "|" + "\n";
+          } else {
+            result += data[i][j] + " ";
           }
         }
       }
-      return result;
+      return result + "Words:";
     }
 
     /**Attempts to add a given word to the specified position of the WordGrid.
