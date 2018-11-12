@@ -10,8 +10,9 @@ public class WordSearch{
 
 
     public WordSearch(int rows,int cols, String fileName){
-    // Choose a randSeed using the clock Random
+    // Choose a randSeed using the clock Random.
       randgen = new Random(seed);
+      readFile(fileName);
       constructSearch(rows, cols, fileName);
     }
 
@@ -19,6 +20,7 @@ public class WordSearch{
     // Use the random seed specified.
       randSeed = this.seed;
       randgen = new Random(randSeed);
+      readFile(fileName);
       constructSearch(rows, cols, fileName);
     }
 
@@ -38,8 +40,11 @@ public class WordSearch{
       File f = new File(fileName);
       Scanner in = new Scanner(f);
       while(in.hasNext()){
+        try {
         String line = in.nextLine();
         wordsToAdd.add(line);
+        }
+        catch (NullPointerException n) {}
       }
 
       } catch(FileNotFoundException e){
@@ -165,7 +170,7 @@ public class WordSearch{
      *        false when: the word doesn't fit, OR  rowchange and colchange are both 0,
      *        OR there are overlapping letters that do not match
      */
-    private boolean addWord(String word,int r, int c, int rowIncrement, int colIncrement){
+    public boolean addWord(String word,int r, int c, int rowIncrement, int colIncrement){
 
     /*[rowIncrement,colIncrement] examples:
      *[-1,1] would add up and the right because (row -1 each time, col + 1 each time)
@@ -176,13 +181,12 @@ public class WordSearch{
      if (rowIncrement == 0 && colIncrement == 0){
        return false;
      }
-      for (int i = 0; i < data.length; i++){
-        for (int j = 0; j < data[i].length; j++){
+
+      for (int i = 0; i < word.length(); i++){
           data[r][c] = word.charAt(i);
           r += rowIncrement;
           c += colIncrement;
         }
-      }
       return true;
    }
 }
