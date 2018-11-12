@@ -93,6 +93,32 @@ public class Driver {
       |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
       |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
     */
+
+    System.out.println("WSe.addWord(\"TIFA\",1,5,0,-1)");
+    if(WSe.addWord("TIFA",1,5,0,-1)) {
+      System.out.println("> addition success.");
+      System.out.println("> TEST CASE - FAIL");
+    } else {
+      System.out.println("> addition failure.");
+      System.out.println("> TEST CASE - PASS");
+    }
+    // > addition failure.
+    // should fail, TIFA is within bounds, yes destructive interference
+
+    System.out.println(WSe);
+    /*
+      |_ _ C L O U D _ _ _ _ _ _ _|
+      |A F I T _ _ _ _ _ _ _ _ _ _|
+      |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
+      |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
+      |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
+      |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
+      |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
+      |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
+      |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
+      |_ _ _ _ _ _ _ _ _ _ _ _ _ _|
+    */
+
    }
 
 }

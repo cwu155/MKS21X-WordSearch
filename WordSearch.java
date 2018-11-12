@@ -183,10 +183,19 @@ public class WordSearch{
      }
 
       for (int i = 0; i < word.length(); i++){
-          data[r][c] = word.charAt(i);
-          r += rowIncrement;
-          c += colIncrement;
+        int row = r + (rowIncrement * i);
+        int col = c + (colIncrement * i);
+        if (data[row][col] != '_' && data[row][col] != word.charAt(i)){
+          return false;
         }
+      }
+
+      for (int j = 0; j < word.length(); j++){
+        data[r][c] = word.charAt(j);
+        r += rowIncrement;
+        c += colIncrement;
+      }
       return true;
-   }
+    }
+
 }
