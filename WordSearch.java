@@ -178,18 +178,26 @@ public class WordSearch{
      *[ 0,-1] would add towards the left because (col - 1), with no row change
      */
 
+     // Checks if rowchange or colchange are both 0.
      if (rowIncrement == 0 && colIncrement == 0){
        return false;
      }
 
-      for (int i = 0; i < word.length(); i++){
-        int row = r + (rowIncrement * i);
-        int col = c + (colIncrement * i);
-        if (data[row][col] != '_' && data[row][col] != word.charAt(i)){
-          return false;
+     try {
+       // Checks for overlapping letters.
+        for (int i = 0; i < word.length(); i++){
+          int row = r + (rowIncrement * i);
+          int col = c + (colIncrement * i);
+          if (data[row][col] != '_' && data[row][col] != word.charAt(i)){
+            return false;
+          }
         }
+      } catch (ArrayIndexOutOfBoundsException e){
+        return false;
       }
 
+
+    // Runs if word meets all requirements.
       for (int j = 0; j < word.length(); j++){
         data[r][c] = word.charAt(j);
         r += rowIncrement;
