@@ -1,5 +1,5 @@
+CLOUD
 apple
 banana
 cucumber
 durian
-cloud
