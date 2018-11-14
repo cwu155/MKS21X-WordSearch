@@ -6,19 +6,19 @@ public class WordSearch{
     private char[][]data;
     private int seed;
     private Random randgen;
-    private ArrayList<String>wordsToAdd;
+    private ArrayList<String>wordsToAdd = new ArrayList<String>();
     private ArrayList<String>wordsAdded;
 
 
     public WordSearch(int rows,int cols, String fileName){
-    // Choose a randSeed using the clock Random.
+    //Choose a randSeed using the clock Random.
       randgen = new Random(seed);
       readFile(fileName);
       constructSearch(rows, cols, fileName);
     }
 
     public WordSearch(int rows, int cols, String fileName, int randSeed){
-    // Use the random seed specified.
+    //Use the random seed specified.
       randSeed = this.seed;
       randgen = new Random(randSeed);
       readFile(fileName);
@@ -26,7 +26,7 @@ public class WordSearch{
     }
 
     public void constructSearch(int rows, int cols, String fileName){
-      // Helper method!
+      //Helper method!
       data = new char[rows][cols];
       for (int i = 0; i < data.length; i++){
         for (int j = 0; j < data[i].length; j++){
@@ -36,7 +36,8 @@ public class WordSearch{
     }
 
     public void readFile(String fileName){
-      // Checks to see if file exists and adds words to wordsToAdd.
+      //Checks to see if file exists and adds words to wordsToAdd.
+
       try {
       File f = new File(fileName);
       Scanner in = new Scanner(f);
@@ -45,7 +46,9 @@ public class WordSearch{
         String line = in.nextLine();
         wordsToAdd.add(line);
         }
-        catch (NullPointerException n) {}
+        catch (NullPointerException n){
+          System.out.println("Your!! Code!! Doesn't!! Work!!");
+        }
       }
 
       } catch(FileNotFoundException e){
@@ -66,11 +69,11 @@ public class WordSearch{
 
 
     public String toString(){
-    // You need to add words and seed!
-    // String words = "";
-    // for (int a = 0; a < wordsAdded.size(); a++){
-    //   words += wordsAdded.get(a);
-    // }
+    // You need to add words and seed! Code below doesn't work :(
+     String words = "";
+     for (int a = 0; a < wordsToAdd.size(); a++){
+       words += wordsToAdd.get(a);
+     }
 
     String result = "";
       for (int i = 0; i < data.length; i++) {
@@ -86,7 +89,7 @@ public class WordSearch{
           }
         }
       }
-      return result + "Words:";
+      return result + "Words:" + words;
     }
 
 
@@ -111,13 +114,13 @@ public class WordSearch{
      *[ 0,-1] would add towards the left because (col - 1), with no row change
      */
 
-     // Checks if rowchange or colchange are both 0.
+     //Checks if rowchange or colchange are both 0.
      if (rowIncrement == 0 && colIncrement == 0){
        return false;
      }
 
      try {
-       // Checks for overlapping letters.
+       //Checks for overlapping letters.
         for (int i = 0; i < word.length(); i++){
           int row = r + (rowIncrement * i);
           int col = c + (colIncrement * i);
@@ -125,17 +128,17 @@ public class WordSearch{
             return false;
           }
         }
-      // Catches ArrayIndexOutOfBoundsException.
+      //Catches ArrayIndexOutOfBoundsException.
       } catch (ArrayIndexOutOfBoundsException e){
         return false;
       }
 
-    // Runs if word meets all requirements.
+    //Runs if word meets all requirements.
       for (int j = 0; j < word.length(); j++){
         data[r][c] = word.charAt(j);
         r += rowIncrement;
         c += colIncrement;
-        wordsAdded.add(word);
+        //wordsAdded.add(word);
       }
       return true;
     }
@@ -147,7 +150,7 @@ public class WordSearch{
         int colIncrement = randgen.nextInt() % 2;
         int r = randgen.nextInt() % data.length;
         int c = randgen.nextInt() % data[i].length;
-        addWord(word, r, c, rowIncrement, colIncrement);
+      //  addWord(word, r, c, rowIncrement, colIncrement);
     }
   }
 
