@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.Arrays;
 import java.io.*;
 
 public class WordSearch{
@@ -12,7 +11,7 @@ public class WordSearch{
 
     public WordSearch(int rows,int cols, String fileName){
     //Choose a randSeed using the clock Random.
-      randgen = new Random(seed);
+      randgen = new Random();
       readFile(fileName);
       constructSearch(rows, cols, fileName);
     }
@@ -69,7 +68,7 @@ public class WordSearch{
 
 
     public String toString(){
-    // You need to add words and seed! Code below doesn't work :(
+
      String words = "";
      for (int a = 0; a < wordsAdded.size(); a++){
        if (a == wordsAdded.size()-1){
@@ -93,7 +92,7 @@ public class WordSearch{
           }
         }
       }
-      return result + "Words: " + words;
+      return result + "Words: " + words + " (seed: " + randgen.nextInt() % 100 + ')';
     }
 
 
@@ -143,18 +142,19 @@ public class WordSearch{
         r += rowIncrement;
         c += colIncrement;
       }
+        wordsToAdd.remove(word);
         wordsAdded.add(word);
         return true;
     }
 
     public void addAllWords(){
       for (int i = 0; i < wordsToAdd.size(); i++){
-        String word; // Code for rng word here
+        String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size()); // Code for rng word here
         int rowIncrement = randgen.nextInt() % 2;
         int colIncrement = randgen.nextInt() % 2;
         int r = randgen.nextInt() % data.length;
         int c = randgen.nextInt() % data[i].length;
-      //  addWord(word, r, c, rowIncrement, colIncrement);
+        addWord(word, r, c, rowIncrement, colIncrement);
     }
   }
 

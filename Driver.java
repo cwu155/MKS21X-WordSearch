@@ -829,6 +829,58 @@ public class Driver {
               |D I _ I I _ _ T _ _ _ _ _ _|
               |_ _ C C T _ H _ _ _ _ _ _ _|
             */
+
+    if(args.length == 2) {
+      WordSearch WSe2 = new WordSearch(Integer.parseInt(args[0]),Integer.parseInt(args[1]),"words.txt");
+
+      System.out.println("WordSearch WSe2 = new WordSearch(args[0],args[1],\"words.txt\")");
+      System.out.println(WSe2);
+      /*
+        example:
+        java Driver_Test 10 12
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+        |_ _ _ _ _ _ _ _ _ _ _ _|
+
+        example:
+        java Driver_Test 3 5
+        |_ _ _ _ _|
+        |_ _ _ _ _|
+        |_ _ _ _ _|
+
+        example:
+        java Driver_Test 6 6
+        |_ _ _ _ _ _|
+        |_ _ _ _ _ _|
+        |_ _ _ _ _ _|
+        |_ _ _ _ _ _|
+        |_ _ _ _ _ _|
+        |_ _ _ _ _ _|
+      */
+
+      WSe2.addAllWords();
+      System.out.println(WSe2);
+      // hopefully filled WordSearch
+
+    } else if(args.length == 1) {
+      System.out.println("MISSING INPUT:\nDriver_Test class needs terminal line args:");
+      System.out.println("- int rows [FOUND]\n- int cols [NOT FOUND]");
+
+    } else if(args.length == 0) {
+      System.out.println("MISSING INPUT:\nDriver_Test class needs terminal line args:");
+      System.out.println("- int rows [NOT FOUND]\n- int cols [NOT FOUND]");
+
+    } else {
+      System.out.println("INVALID INPUT:\nDriver_Test class only needs 2 int terminal line args");
+
+    }
    }
 
 }
