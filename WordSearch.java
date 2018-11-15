@@ -7,7 +7,7 @@ public class WordSearch{
     private int seed;
     private Random randgen;
     private ArrayList<String>wordsToAdd = new ArrayList<String>();
-    private ArrayList<String>wordsAdded;
+    private ArrayList<String>wordsAdded = new ArrayList<String>();
 
 
     public WordSearch(int rows,int cols, String fileName){
@@ -71,8 +71,12 @@ public class WordSearch{
     public String toString(){
     // You need to add words and seed! Code below doesn't work :(
      String words = "";
-     for (int a = 0; a < wordsToAdd.size(); a++){
-       words += wordsToAdd.get(a);
+     for (int a = 0; a < wordsAdded.size(); a++){
+       if (a == wordsAdded.size()-1){
+         words += wordsAdded.get(a);
+       } else {
+         words += wordsAdded.get(a) + ", ";
+       }
      }
 
     String result = "";
@@ -89,7 +93,7 @@ public class WordSearch{
           }
         }
       }
-      return result + "Words:" + words;
+      return result + "Words: " + words;
     }
 
 
@@ -138,9 +142,9 @@ public class WordSearch{
         data[r][c] = word.charAt(j);
         r += rowIncrement;
         c += colIncrement;
-        //wordsAdded.add(word);
       }
-      return true;
+        wordsAdded.add(word);
+        return true;
     }
 
     public void addAllWords(){
