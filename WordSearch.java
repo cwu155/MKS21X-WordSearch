@@ -68,7 +68,7 @@ public class WordSearch{
 
 
     public String toString(){
-
+    seed = randgen.nextInt() % 100;
      String words = "";
      for (int a = 0; a < wordsAdded.size(); a++){
        if (a == wordsAdded.size()-1){
@@ -83,16 +83,14 @@ public class WordSearch{
         for (int j = 0; j < data[i].length; j++) {
           if (j == 0){
           result += "|" + data[i][j] + " ";
-          } else if (j == data[i].length - 2){
-          result += data[i][j];
           } else if (j == data[i].length - 1){
-            result += "|" + "\n";
+            result += data[i][j] + "|" + "\n";
           } else {
             result += data[i][j] + " ";
           }
         }
       }
-      return result + "Words: " + words + " (seed: " + randgen.nextInt() % 100 + ')';
+      return result + "Words: " + words + " (seed: " + seed + ')';
     }
 
 
