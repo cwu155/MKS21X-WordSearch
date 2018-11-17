@@ -1,5 +1,8 @@
-CLOUD
 apple
 banana
 cucumber
-durian
+dog
+elephant
+fish
+gargle
+heart

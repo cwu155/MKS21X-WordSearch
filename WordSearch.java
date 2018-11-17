@@ -140,20 +140,45 @@ public class WordSearch{
         r += rowIncrement;
         c += colIncrement;
       }
-        wordsToAdd.remove(word);
-        wordsAdded.add(word);
+      wordsToAdd.remove(word);
+      wordsAdded.add(word);
         return true;
     }
 
     public void addAllWords(){
-      for (int i = 0; i < wordsToAdd.size(); i++){
-        String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size()); // Code for rng word here
+      int count = 0;
+      while (wordsToAdd.size() > 0 && count < 10000){
+        for (int i = 0; i < wordsToAdd.size(); i++){
+        String word = wordsToAdd.get(randgen.nextInt(wordsToAdd.size()));
         int rowIncrement = randgen.nextInt() % 2;
         int colIncrement = randgen.nextInt() % 2;
-        int r = randgen.nextInt() % data.length;
-        int c = randgen.nextInt() % data[i].length;
+        int r = randgen.nextInt(data.length);
+        int c = randgen.nextInt(data[i].length);
+
         addWord(word, r, c, rowIncrement, colIncrement);
+
+
+        if (addWord(word, r, c, rowIncrement, colIncrement) == false){
+          count += 1;
+        }
+      }
     }
   }
+
+    public void fillGrid(){
+      for (int i = 0; i < data.length; i++){
+        for (int j = 0; j < data[i].length; i++){
+          if (data[i][j] == '_'){
+          //  data[i][j] = ('A' + randgen.nextInt() % 10); //Replace with code for a random letter
+          }
+        }
+      }
+    }
+
+    public static void main(String[] args) {
+      WordSearch wordSearch = new WordSearch (Integer.parseInt(args[0]), Integer.parseInt(args[1]), "words.txt");
+      wordSearch.addAllWords();
+      System.out.println(wordSearch);
+    }
 
 }
