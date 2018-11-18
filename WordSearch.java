@@ -12,6 +12,7 @@ public class WordSearch{
     public WordSearch(int rows,int cols, String fileName){
     //Choose a randSeed using the clock Random.
       randgen = new Random();
+      seed = Math.abs(randgen.nextInt() % 100);
       readFile(fileName);
       constructSearch(rows, cols, fileName);
     }
@@ -68,7 +69,7 @@ public class WordSearch{
 
 
     public String toString(){
-    seed = randgen.nextInt() % 100;
+
      String words = "";
      for (int a = 0; a < wordsAdded.size(); a++){
        if (a == wordsAdded.size()-1){
@@ -120,8 +121,11 @@ public class WordSearch{
        return false;
      }
 
-     try {
-       //Checks for overlapping letters.
+     if ((word.length() * rowIncrement > data.length - r) || (word.length() * colIncrement> data[0].length - c)){
+       return false;
+     }
+      //Checks for overlapping letters.
+      try {
         for (int i = 0; i < word.length(); i++){
           int row = r + (rowIncrement * i);
           int col = c + (colIncrement * i);
@@ -129,10 +133,16 @@ public class WordSearch{
             return false;
           }
         }
-      //Catches ArrayIndexOutOfBoundsException.
       } catch (ArrayIndexOutOfBoundsException e){
         return false;
       }
+
+      // data.length = the length of the row
+      // data[i].length = the length of the column
+      // so if the length of the word (word.length) is greater than the row or column you're trying
+      // to add it to (data.length - r * rowIncrement for rows) then return false.
+
+
 
     //Runs if word meets all requirements.
       for (int j = 0; j < word.length(); j++){
@@ -140,6 +150,7 @@ public class WordSearch{
         r += rowIncrement;
         c += colIncrement;
       }
+
       wordsToAdd.remove(word);
       wordsAdded.add(word);
         return true;
@@ -147,13 +158,12 @@ public class WordSearch{
 
     public void addAllWords(){
       int count = 0;
-      while (wordsToAdd.size() > 0 && count < 10000){
-        for (int i = 0; i < wordsToAdd.size(); i++){
-        String word = wordsToAdd.get(randgen.nextInt(wordsToAdd.size()));
+        for (int i = 0; 0 < wordsToAdd.size() && count < 10000; i++){
+        String word = wordsToAdd.get(Math.abs(randgen.nextInt(wordsToAdd.size())));
         int rowIncrement = randgen.nextInt() % 2;
         int colIncrement = randgen.nextInt() % 2;
         int r = randgen.nextInt(data.length);
-        int c = randgen.nextInt(data[i].length);
+        int c = randgen.nextInt(data[0].length);
 
         addWord(word, r, c, rowIncrement, colIncrement);
 
@@ -163,13 +173,13 @@ public class WordSearch{
         }
       }
     }
-  }
 
     public void fillGrid(){
       for (int i = 0; i < data.length; i++){
-        for (int j = 0; j < data[i].length; i++){
+        for (int j = 0; j < data[0].length; j++){
           if (data[i][j] == '_'){
-          //  data[i][j] = ('A' + randgen.nextInt() % 10); //Replace with code for a random letter
+            data[i][j] = (char)(randgen.nextInt(26) + 'a');
+
           }
         }
       }
@@ -178,6 +188,7 @@ public class WordSearch{
     public static void main(String[] args) {
       WordSearch wordSearch = new WordSearch (Integer.parseInt(args[0]), Integer.parseInt(args[1]), "words.txt");
       wordSearch.addAllWords();
+      wordSearch.fillGrid();
       System.out.println(wordSearch);
     }
 
