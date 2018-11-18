@@ -137,12 +137,6 @@ public class WordSearch{
         return false;
       }
 
-      // data.length = the length of the row
-      // data[i].length = the length of the column
-      // so if the length of the word (word.length) is greater than the row or column you're trying
-      // to add it to (data.length - r * rowIncrement for rows) then return false.
-
-
 
     //Runs if word meets all requirements.
       for (int j = 0; j < word.length(); j++){
@@ -178,7 +172,7 @@ public class WordSearch{
       for (int i = 0; i < data.length; i++){
         for (int j = 0; j < data[0].length; j++){
           if (data[i][j] == '_'){
-            data[i][j] = (char)(randgen.nextInt(26) + 'a');
+            data[i][j] = (char)(randgen.nextInt(26) + 'A');
 
           }
         }
@@ -188,6 +182,7 @@ public class WordSearch{
     public static void main(String[] args) {
       WordSearch wordSearch = new WordSearch (Integer.parseInt(args[0]), Integer.parseInt(args[1]), "words.txt");
       wordSearch.addAllWords();
+      System.out.println(wordSearch);
       wordSearch.fillGrid();
       System.out.println(wordSearch);
     }
