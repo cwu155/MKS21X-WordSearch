@@ -186,15 +186,16 @@ public class WordSearch{
     }
 
     public static void main(String[] args) {
-      String directions = "Your first command line argument is the number of rows of your WordSearch, the second the numbers of columns, and the third the name of the file containing all the words for your WordSearch. \n A seed integer from 0 to 10000 is optional for the 4th parameter. If you want access to the Answer Key, type 'true' into the 5th parameter.";
+      String directions = "Your first command line argument is the number of rows of your WordSearch, the second the numbers of columns, and the third the name of the file containing all the words for your WordSearch.\nA seed integer from 0 to 10000 is optional for the 4th parameter. If you want access to the Answer Key, type 'key' into the 5th parameter.";
 
-      boolean key;
+      boolean key = false;
 
       try {
-      if (args.length < 3){
+      if (args.length < 3 || args.length > 5){
         System.out.println(directions);
       }
-      if (args.length < 4){
+
+      if (args.length == 3){
         int rows = Integer.parseInt(args[0]);
         int cols = Integer.parseInt(args[1]);
         String fileName = args[2];
@@ -204,7 +205,8 @@ public class WordSearch{
         wSearch.fillGrid();
         System.out.println(wSearch);
       }
-      if (args.length < 5){
+
+      if (args.length == 4){
         int seed = Integer.parseInt(args[3]);
         if (seed < 0 || seed > 10000) {
           System.out.println(directions);
@@ -234,9 +236,7 @@ public class WordSearch{
     }
 
     } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("Read the directions please! :)");
+      System.out.println(directions);
     }
-
-
-    }
+  }
 }
