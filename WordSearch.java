@@ -79,6 +79,7 @@ public class WordSearch{
        }
      }
 
+
     String result = "";
       for (int i = 0; i < data.length; i++) {
         for (int j = 0; j < data[i].length; j++) {
@@ -121,10 +122,12 @@ public class WordSearch{
        return false;
      }
 
+     //Checks for out of bounds
      if ((word.length() * rowIncrement > data.length - r) || (word.length() * colIncrement> data[0].length - c)){
        return false;
      }
-      //Checks for overlapping letters.
+
+    //Checks for overlapping letters.
       try {
         for (int i = 0; i < word.length(); i++){
           int row = r + (rowIncrement * i);
@@ -147,26 +150,30 @@ public class WordSearch{
 
       wordsToAdd.remove(word);
       wordsAdded.add(word);
-        return true;
+      return true;
     }
 
     public void addAllWords(){
       int count = 0;
-        for (int i = 0; 0 < wordsToAdd.size() && count < 10000; i++){
+
+      for (int i = 0; 0 < wordsToAdd.size() && count < 10000; i++){
         String word = wordsToAdd.get(Math.abs(randgen.nextInt(wordsToAdd.size())));
         int rowIncrement = randgen.nextInt() % 2;
         int colIncrement = randgen.nextInt() % 2;
         int r = randgen.nextInt(data.length);
         int c = randgen.nextInt(data[0].length);
 
-        addWord(word, r, c, rowIncrement, colIncrement);
-
-
-        if (addWord(word, r, c, rowIncrement, colIncrement) == false){
+        if (!(addWord(word, r, c, rowIncrement, colIncrement))){
           count += 1;
+
+        } else {
+          addWord(word, r, c, rowIncrement, colIncrement);
+          wordsAdded.remove(word); //No idea why this works. Without this line, wordsAdded would print each word twice.
         }
+
       }
     }
+
 
     public void fillGrid(){
       for (int i = 0; i < data.length; i++){
@@ -183,8 +190,5 @@ public class WordSearch{
       WordSearch wordSearch = new WordSearch (Integer.parseInt(args[0]), Integer.parseInt(args[1]), "words.txt");
       wordSearch.addAllWords();
       System.out.println(wordSearch);
-      wordSearch.fillGrid();
-      System.out.println(wordSearch);
     }
-
 }
