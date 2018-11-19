@@ -12,7 +12,7 @@ public class WordSearch{
     public WordSearch(int rows,int cols, String fileName){
     //Choose a randSeed using the clock Random.
       randgen = new Random();
-      seed = Math.abs(randgen.nextInt() % 100);
+      seed = Math.abs(randgen.nextInt(10000));
       readFile(fileName);
       constructSearch(rows, cols, fileName);
     }
@@ -170,7 +170,6 @@ public class WordSearch{
           addWord(word, r, c, rowIncrement, colIncrement);
           wordsAdded.remove(word); //No idea why this works. Without this line, wordsAdded would print each word twice.
         }
-
       }
     }
 
@@ -187,8 +186,29 @@ public class WordSearch{
     }
 
     public static void main(String[] args) {
-      WordSearch wordSearch = new WordSearch (Integer.parseInt(args[0]), Integer.parseInt(args[1]), "words.txt");
-      wordSearch.addAllWords();
-      System.out.println(wordSearch);
+      String directions = "Your first command line argument is the number of rows of your WordSearch, the second the numbers of columns, and the third the name of the file containing all the words for your WordSearch. \n A seed integer from 0 to 10000 is optional for the 4th parameter. If you want access to the Answer Key, type 'true' into the 5th parameter.";
+
+      boolean key;
+
+      try {
+      if (args.length < 3){
+        System.out.println(directions);
+      }
+      if (args.length < 4){
+        int rows = Integer.parseInt(args[0]);
+        int cols = Integer.parseInt(args[1]);
+        String fileName = args[2];
+        key = false;
+        WordSearch wSearch = new WordSearch (rows, cols, fileName);
+        wSearch.addAllWords();
+        System.out.println(wSearch);
+      }
+
+
+    } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("Read the directions please! :)");
+    }
+
+
     }
 }
