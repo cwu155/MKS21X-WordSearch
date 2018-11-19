@@ -19,8 +19,8 @@ public class WordSearch{
 
     public WordSearch(int rows, int cols, String fileName, int randSeed){
     //Use the random seed specified.
-      randSeed = this.seed;
-      randgen = new Random(randSeed);
+      seed = randSeed;
+      randgen = new Random(seed);
       readFile(fileName);
       constructSearch(rows, cols, fileName);
     }
@@ -201,9 +201,37 @@ public class WordSearch{
         key = false;
         WordSearch wSearch = new WordSearch (rows, cols, fileName);
         wSearch.addAllWords();
+        wSearch.fillGrid();
         System.out.println(wSearch);
       }
-
+      if (args.length < 5){
+        int seed = Integer.parseInt(args[3]);
+        if (seed < 0 || seed > 10000) {
+          System.out.println(directions);
+        } else {
+        int rows = Integer.parseInt(args[0]);
+        int cols = Integer.parseInt(args[1]);
+        String fileName = args[2];
+        WordSearch wSearch = new WordSearch (rows, cols, fileName, seed);
+        wSearch.addAllWords();
+        wSearch.fillGrid();
+        System.out.println(wSearch);
+        }
+      }
+      if (args.length == 5){
+        key = true;
+        int seed = Integer.parseInt(args[3]);
+        if (seed < 0 || seed > 10000) {
+          System.out.println(directions);
+        } else {
+        int rows = Integer.parseInt(args[0]);
+        int cols = Integer.parseInt(args[1]);
+        String fileName = args[2];
+        WordSearch wSearch = new WordSearch (rows, cols, fileName, seed);
+        wSearch.addAllWords();
+        System.out.println(wSearch);
+      }
+    }
 
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("Read the directions please! :)");
